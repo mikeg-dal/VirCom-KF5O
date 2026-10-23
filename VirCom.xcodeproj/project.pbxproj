@@ -1,0 +1,580 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0490D63E93231736B2C13649 /* VirComApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC7977597C7B8C10D3E9D6A5 /* VirComApp.swift */; };
+		3CAA06FAD30DEEFC168606E7 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535164CD57BEBE73A8D46AAE /* AppModel.swift */; };
+		4E8E76255B4F8BC52292FD47 /* DownloadToolModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7750E89F12F89B012609F018 /* DownloadToolModel.swift */; };
+		5AD2630E5A7A3FAE83F63106 /* VirComUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377B7235CD9AB6C7AB21D51B /* VirComUITests.swift */; };
+		60069F9E46DF32A4F6E25B3E /* DownloadToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F9D105482A743254F4B2B1 /* DownloadToolView.swift */; };
+		64E53D5C634BD22AFAEACD34 /* MoreAdvancedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69ED692801A123BF6ADF7120 /* MoreAdvancedView.swift */; };
+		6FE89D0E6FCAC8A426E615CC /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B5F7F1C76C195BCAEF0C47 /* QRCodeView.swift */; };
+		7387D53A8111E9AD00DFF884 /* PortEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F57AE3BB41136ADE3DB6A6C /* PortEditorView.swift */; };
+		80C2429D0D81ACEAFB88FA57 /* SerialPortOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B327893E199FAD0E057F3E7 /* SerialPortOptions.swift */; };
+		87B78478860277D9F849C835 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B935B157788AF43AD156EC /* MainView.swift */; };
+		8CF2554B038A3C6EEB4CDA17 /* SerialSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBE5407D6A9DDFA81F770FD /* SerialSearchView.swift */; };
+		9CFD4558A47723D5048DE37A /* DeviceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415BB6D8A606DAA4F5F783C3 /* DeviceSettingsView.swift */; };
+		9FF40D504CAA4A3A1C940100 /* ConfigEditors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD13EE96152ECE277B63FE5E /* ConfigEditors.swift */; };
+		A20EEFB72C1927A36FF1BBAC /* FourGToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A30D355EEC9D371016D6CA6 /* FourGToolView.swift */; };
+		B6CD8C3A23DB8BE8965CFBDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC25C97885D3542AA6175D5 /* Assets.xcassets */; };
+		B7A54346948495491EE9E1DF /* VirComKit in Frameworks */ = {isa = PBXBuildFile; productRef = 23CB5E478D9AD5CAFD529FED /* VirComKit */; };
+		C5686211033A65C04AC2F52E /* DeviceManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94878DB8D1C8022EADD7551E /* DeviceManagerView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FDDD353070D8DB2D285E72D5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7892068194BC9B44944A8B97 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4CFB3DE7A40D786A2D6FB59;
+			remoteInfo = VirCom;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		377B7235CD9AB6C7AB21D51B /* VirComUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirComUITests.swift; sourceTree = "<group>"; };
+		415BB6D8A606DAA4F5F783C3 /* DeviceSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSettingsView.swift; sourceTree = "<group>"; };
+		46EEC2036309D42A83901A8D /* VirComKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = VirComKit; path = VirComKit; sourceTree = SOURCE_ROOT; };
+		4F57AE3BB41136ADE3DB6A6C /* PortEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortEditorView.swift; sourceTree = "<group>"; };
+		535164CD57BEBE73A8D46AAE /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		5B327893E199FAD0E057F3E7 /* SerialPortOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialPortOptions.swift; sourceTree = "<group>"; };
+		69ED692801A123BF6ADF7120 /* MoreAdvancedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreAdvancedView.swift; sourceTree = "<group>"; };
+		6FBE5407D6A9DDFA81F770FD /* SerialSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialSearchView.swift; sourceTree = "<group>"; };
+		7750E89F12F89B012609F018 /* DownloadToolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadToolModel.swift; sourceTree = "<group>"; };
+		7A30D355EEC9D371016D6CA6 /* FourGToolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourGToolView.swift; sourceTree = "<group>"; };
+		7C1502A54EDA1BE8FD2B5A2B /* VirCom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirCom.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		84F9D105482A743254F4B2B1 /* DownloadToolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadToolView.swift; sourceTree = "<group>"; };
+		88B935B157788AF43AD156EC /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		94878DB8D1C8022EADD7551E /* DeviceManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManagerView.swift; sourceTree = "<group>"; };
+		A79D75368A2332AE81C40D0D /* VirComUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirComUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD13EE96152ECE277B63FE5E /* ConfigEditors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigEditors.swift; sourceTree = "<group>"; };
+		C6B5F7F1C76C195BCAEF0C47 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		DC7977597C7B8C10D3E9D6A5 /* VirComApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirComApp.swift; sourceTree = "<group>"; };
+		FAC25C97885D3542AA6175D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC014B505CCC170C9EDA4747 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B7A54346948495491EE9E1DF /* VirComKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		12BE1CE8CB3290459C162C3F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				535164CD57BEBE73A8D46AAE /* AppModel.swift */,
+				7750E89F12F89B012609F018 /* DownloadToolModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		21A08CEA85A810599D9E5B1A /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				377B7235CD9AB6C7AB21D51B /* VirComUITests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		23B07954568FFA38F77D9845 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				DC7977597C7B8C10D3E9D6A5 /* VirComApp.swift */,
+				12BE1CE8CB3290459C162C3F /* Model */,
+				31FC7C73C04F5F7FB10F2C80 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		31FC7C73C04F5F7FB10F2C80 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AD13EE96152ECE277B63FE5E /* ConfigEditors.swift */,
+				94878DB8D1C8022EADD7551E /* DeviceManagerView.swift */,
+				415BB6D8A606DAA4F5F783C3 /* DeviceSettingsView.swift */,
+				84F9D105482A743254F4B2B1 /* DownloadToolView.swift */,
+				7A30D355EEC9D371016D6CA6 /* FourGToolView.swift */,
+				88B935B157788AF43AD156EC /* MainView.swift */,
+				69ED692801A123BF6ADF7120 /* MoreAdvancedView.swift */,
+				4F57AE3BB41136ADE3DB6A6C /* PortEditorView.swift */,
+				C6B5F7F1C76C195BCAEF0C47 /* QRCodeView.swift */,
+				5B327893E199FAD0E057F3E7 /* SerialPortOptions.swift */,
+				6FBE5407D6A9DDFA81F770FD /* SerialSearchView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5A90EDA0DD5B0AD8D1913910 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FAC25C97885D3542AA6175D5 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5AFA10C9584D76FF40754832 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5A90EDA0DD5B0AD8D1913910 /* Resources */,
+				23B07954568FFA38F77D9845 /* Sources */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B165ABB8887BA85C60ED2F7E = {
+			isa = PBXGroup;
+			children = (
+				5AFA10C9584D76FF40754832 /* App */,
+				F194EBA4B95FF5A7AC7BA5ED /* Packages */,
+				21A08CEA85A810599D9E5B1A /* UITests */,
+				B99475ADACC4BD687C4C3CF2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B99475ADACC4BD687C4C3CF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7C1502A54EDA1BE8FD2B5A2B /* VirCom.app */,
+				A79D75368A2332AE81C40D0D /* VirComUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F194EBA4B95FF5A7AC7BA5ED /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				46EEC2036309D42A83901A8D /* VirComKit */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AC8EC5CDE2C44C78C4A8BD30 /* VirComUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3279CD7B2E87EB383492E962 /* Build configuration list for PBXNativeTarget "VirComUITests" */;
+			buildPhases = (
+				B0212809E070CD7FFC002009 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B7E8A86D693DD254083309D6 /* PBXTargetDependency */,
+			);
+			name = VirComUITests;
+			packageProductDependencies = (
+			);
+			productName = VirComUITests;
+			productReference = A79D75368A2332AE81C40D0D /* VirComUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		F4CFB3DE7A40D786A2D6FB59 /* VirCom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FE77CA27464207B0074E5A2 /* Build configuration list for PBXNativeTarget "VirCom" */;
+			buildPhases = (
+				1D3CB959D8AEB0555C2DDBAC /* Sources */,
+				7822B3E3D79B6672B1830317 /* Resources */,
+				DC014B505CCC170C9EDA4747 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VirCom;
+			packageProductDependencies = (
+				23CB5E478D9AD5CAFD529FED /* VirComKit */,
+			);
+			productName = VirCom;
+			productReference = 7C1502A54EDA1BE8FD2B5A2B /* VirCom.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7892068194BC9B44944A8B97 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					AC8EC5CDE2C44C78C4A8BD30 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Manual;
+						TestTargetID = F4CFB3DE7A40D786A2D6FB59;
+					};
+					F4CFB3DE7A40D786A2D6FB59 = {
+						DevelopmentTeam = 49G92DYD5H;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = A24414E53D784DF7C391F432 /* Build configuration list for PBXProject "VirCom" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = B165ABB8887BA85C60ED2F7E;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				95DA21BDAF6CE6C0FCC242BF /* XCLocalSwiftPackageReference "VirComKit" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = B99475ADACC4BD687C4C3CF2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4CFB3DE7A40D786A2D6FB59 /* VirCom */,
+				AC8EC5CDE2C44C78C4A8BD30 /* VirComUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7822B3E3D79B6672B1830317 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B6CD8C3A23DB8BE8965CFBDF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D3CB959D8AEB0555C2DDBAC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3CAA06FAD30DEEFC168606E7 /* AppModel.swift in Sources */,
+				9FF40D504CAA4A3A1C940100 /* ConfigEditors.swift in Sources */,
+				C5686211033A65C04AC2F52E /* DeviceManagerView.swift in Sources */,
+				9CFD4558A47723D5048DE37A /* DeviceSettingsView.swift in Sources */,
+				4E8E76255B4F8BC52292FD47 /* DownloadToolModel.swift in Sources */,
+				60069F9E46DF32A4F6E25B3E /* DownloadToolView.swift in Sources */,
+				A20EEFB72C1927A36FF1BBAC /* FourGToolView.swift in Sources */,
+				87B78478860277D9F849C835 /* MainView.swift in Sources */,
+				64E53D5C634BD22AFAEACD34 /* MoreAdvancedView.swift in Sources */,
+				7387D53A8111E9AD00DFF884 /* PortEditorView.swift in Sources */,
+				6FE89D0E6FCAC8A426E615CC /* QRCodeView.swift in Sources */,
+				80C2429D0D81ACEAFB88FA57 /* SerialPortOptions.swift in Sources */,
+				8CF2554B038A3C6EEB4CDA17 /* SerialSearchView.swift in Sources */,
+				0490D63E93231736B2C13649 /* VirComApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0212809E070CD7FFC002009 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5AD2630E5A7A3FAE83F63106 /* VirComUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B7E8A86D693DD254083309D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4CFB3DE7A40D786A2D6FB59 /* VirCom */;
+			targetProxy = FDDD353070D8DB2D285E72D5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		19098B740D2509041E3A1224 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/VirCom.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mikegarcia.vircom;
+				PRODUCT_NAME = VirCom;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2A659C265C7D034A89361300 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = App/VirCom.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mikegarcia.vircom;
+				PRODUCT_NAME = VirCom;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8236B1DFF59AE8FDAC3E857B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mikegarcia.vircom.uitests;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = VirCom;
+			};
+			name = Release;
+		};
+		D5176B1A38E44D0BCBB64137 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 49G92DYD5H;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CODE_SIGN_FLAGS = "--timestamp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		EC6A02B10D94995045018B61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mikegarcia.vircom.uitests;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = VirCom;
+			};
+			name = Debug;
+		};
+		F0B0C94D3D8F4B035454877D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 49G92DYD5H;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_UPCOMING_FEATURE_EXISTENTIAL_ANY = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3279CD7B2E87EB383492E962 /* Build configuration list for PBXNativeTarget "VirComUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC6A02B10D94995045018B61 /* Debug */,
+				8236B1DFF59AE8FDAC3E857B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5FE77CA27464207B0074E5A2 /* Build configuration list for PBXNativeTarget "VirCom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19098B740D2509041E3A1224 /* Debug */,
+				2A659C265C7D034A89361300 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A24414E53D784DF7C391F432 /* Build configuration list for PBXProject "VirCom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0B0C94D3D8F4B035454877D /* Debug */,
+				D5176B1A38E44D0BCBB64137 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		95DA21BDAF6CE6C0FCC242BF /* XCLocalSwiftPackageReference "VirComKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = VirComKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		23CB5E478D9AD5CAFD529FED /* VirComKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = VirComKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 7892068194BC9B44944A8B97 /* Project object */;
+}
