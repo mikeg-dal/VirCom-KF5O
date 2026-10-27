@@ -1,8 +1,27 @@
 # VirCom for macOS
 
-A native macOS (Apple silicon, macOS 27) port of **VirCom 5.68** (ZLAN ZLVircom, Waveshare build): it finds
-and configures serial-to-Ethernet servers, and provides virtual serial ports bridged to them over TCP.
+A native macOS port of **VirCom 5.68** (ZLAN ZLVircom, Waveshare build), the tool Waveshare ships for
+finding and configuring its serial-to-Ethernet servers. It also provides virtual serial ports bridged
+to them over TCP. Waveshare only provides VirCom for Windows, and there was no native Mac app, so this
+is one.
+
+> [!WARNING]
+> **Use at your own risk.** This is independent software by Mike (KF5O): an unofficial Mac port of a
+> Windows tool. It is not affiliated with, endorsed by, or supported by Waveshare or ZLAN. Waveshare,
+> ZLAN and VirCom are their owners' trademarks.
+>
+> It can change settings on real hardware. A wrong network or serial setting can leave a device
+> unreachable until it is reset, and some commands switch physical loads (relays). Check what you send
+> before you send it, and try anything new on a device you can afford to reset first. The software is
+> provided as is, without warranty of any kind; see [LICENSE](LICENSE).
+
 Built with Swift 6 language mode and Swift 6.2 concurrency settings, SwiftUI and AppKit.
+
+## Requirements
+
+- macOS 27 or later, on Apple silicon. There is no Intel build.
+- The device on the same network as the Mac (or reachable by IP), or a USB serial adapter for the
+  serial tools. macOS asks for Local Network access the first time the app searches.
 
 ## Build
 
@@ -11,12 +30,15 @@ Built with Swift 6 language mode and Swift 6.2 concurrency settings, SwiftUI and
 NOTARY_PROFILE=myprofile ./build.sh   # also notarize + staple
 ```
 
-`VirComKit/` holds the protocol, discovery and bridge code (`swift test`: 12 tests). They include a
+Signing uses a *Developer ID Application* identity from the login keychain; set `TEAM_ID=<your team ID>`
+to sign with your own team. Requirements: Xcode 27, XcodeGen.
+
+`VirComKit/` holds the protocol, discovery and bridge code (`swift test`: 38 tests). They include a
 parameter block captured read-only from a real Waveshare device, a simulated device, and a real
 pty ↔ TCP round trip. The protocol, recovered from the Windows binary, is documented in
 [docs/PROTOCOL.md](docs/PROTOCOL.md).
 
-UI tests (`VirComUITests`, XCUITest) open every menu, window, sheet and tab:
+UI tests (`VirComUITests`, XCUITest, 12 tests) open every menu, window, sheet and tab:
 
 ```sh
 xcodebuild test -project VirCom.xcodeproj -scheme VirCom
@@ -69,10 +91,14 @@ Proxy & VLAN, Functions, Raw Bytes), actions in the toolbar, and one Modify Sett
   - P2P/N2N and the XNDNS service (they depend on ZLAN's cloud servers)
 - Mark parity isn't available on macOS. Serial servers listen with mark parity in configuration mode,
   so VirCom for macOS sends with two stop bits instead, which is identical on the wire.
-- Send Files to Device has been confirmed on real hardware only for web pages over the network (WSDEV0001,
-  2026-10-23). Firmware files, sending over serial, the serial tools and radio settings haven't been
+- Send Files to Device has been confirmed on real hardware only for web pages over the network (a Waveshare
+  RS485 TO ETH (B), 2026-10-23). Firmware files, sending over serial, the serial tools and radio settings haven't been
   tested on hardware; their formats were recovered from the Windows binary and checked against its own
   CRC and AES routines.
 - Some firmware sends nothing for `http://device/` and only serves named pages, so Open Web Page tries
   `/`, then `/index.html`, then `/index.htm`.
 - The original sent an unsolicited datagram to `www.i-zlan.com:4196` on startup. This port doesn't.
+
+## License
+
+GPL-3.0. See [LICENSE](LICENSE).
