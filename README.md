@@ -25,7 +25,11 @@ Built with Swift 6 language mode and Swift 6.2 concurrency settings, SwiftUI and
 
 ## Build
 
+There are no prebuilt downloads; build it from source. You need Xcode 27 and
+[XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`).
+
 ```sh
+UNSIGNED=1 ./build.sh               # no Apple Developer account needed; app runs on this Mac → ./dist/VirCom.app
 ./build.sh                          # xcodegen → unit tests → Release archive → Developer ID export to ./dist
 NOTARY_PROFILE=myprofile ./build.sh   # also notarize + staple
 ```
