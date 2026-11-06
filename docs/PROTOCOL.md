@@ -49,7 +49,10 @@ addresses are in network order.
 | 0x30 | 1 | Parity | 0 None, 1 Odd, 2 Even, 3 Mark, 4 Space |
 | 0x31 | 1 | Max packet interval (ms) | default 3 |
 | 0x32 | 2 | Max frame length (bytes) | default 1300 |
-| 0x34 | 4 | (cleared by "Get Default") | *(inferred)* advanced flags |
+| 0x34 | 1 | RS485 frame end type | 0 not used, 1 flow control |
+| 0x35 | 1 | RS485 frame end byte | |
+| 0x36 | 1 | RS485 bus idle time (ms) | conflict detection; 0 off |
+| 0x37 | 1 | RS485 conflict detection / Modbus gateway mode | 0 off, else 2, 3, 4 |
 | 0x38 | 1 | IP mode | 0 Static, 1 DHCP |
 | 0x39 | 1 | Flow control | 0 None, 1 CTS/RTS, 2 DSR/DTR, 3 XON/XOFF |
 | 0x3A | 1 | Destination mode | 0 Static, 1 Dynamic (default) |
@@ -69,7 +72,7 @@ addresses are in network order.
 | 0x6F | 1 | Parameter send interval (min) | default 5 |
 | 0x71 | 1 | (cleared by "Get Default") | |
 | 0x72 | 1 | Flags | bit0 two stop bits, bit1 advanced option |
-| 0x73 | 52 | TLV list | `type, len, data…`, 0-terminated; types 9/10 carry IPs, plus extra destination names/ports and register packets |
+| 0x73 | 52 | TLV list | `type, len, data…`, 0-terminated; see **TLV types** below |
 
 VirCom keeps every other byte as the device sent it. The macOS port does the same: it edits only the
 fields above and sends the rest back unchanged.
@@ -112,6 +115,34 @@ Images are rounded up to 4 KB sectors (except the 7 KB case). Serial download: 2
 `mqtt.txt` (INI `[MQTT]`), `httpd.txt` (scripts from the Modbus gateway / register packet designers),
 `MB` (gateway table), `st.hex` (state transfer, big-endian), `ID<device id>.txt` (binding), `z` (256-byte
 filler written by Clear all). Formats are in `VirComKit/Sources/VirComKit/Download/ConfigFiles.swift`.
+
+## TLV types (parameter list at 0x73)
+
+| Type | Size | Meaning | Where it is surfaced |
+|---|---|---|---|
+| 1 | 1 | flags; bit 1 VLAN enabled | Proxy & VLAN |
+| 2 | n | WiFi SSID | WiFi |
+| 3 | 1 | bits 0–3 AP channel, bit 6 DHCP server off, bit 7 RJ45–WiFi relay | WiFi |
+| 4 | n | WiFi key | WiFi |
+| 5 | 1 | bits 0–5 encryption, bit 6 AP mode, bit 7 station mode | WiFi |
+| 6 | 2 | VLAN, little-endian: bits 0–11 ID, bit 12 media type, bits 13–15 priority | Proxy & VLAN |
+| 7 | 6×n | up to 7 × (IPv4, port BE) extra destinations | Destinations |
+| 8 | 0x27 | proxy: IPv4, port, auth flag, name[16], key[16] | Proxy & VLAN |
+| 9 | 4 | 32-bit value read with `ntohl`, kept at record `+0x15F` — **purpose not identified** | not shown |
+| 10 | 4 | 32-bit value read with `ntohl`, kept at record `+0x163` — **purpose not identified** | not shown |
+| 11 | n | up to 7 × (port BE, name, NUL) when a destination is a domain name | Destinations |
+
+Types 9 and 10 are read by the reply parser `0x42ea90` immediately after it copies the parameter
+block: each is fetched with the TLV getter and passed through `ntohl`, which is how this binary
+stores IPv4 addresses everywhere else, so they are almost certainly two addresses. Nothing in the
+decompiled dialog code shows them being edited, and on WSDEV0001 (firmware V1.452) both are present
+with the value `00 00 00 00`. `ParameterTLV.set` preserves entries it does not recognise, so the
+macOS port writes them back unchanged.
+
+**Still unidentified:** parameter bytes `0x3D` and `0x65–0x66` (observed `0x00` and `0x01 0x00`),
+and bits 6–7 of the supported-functions byte `0x70` (bits 0–5 are IO Port Control, UDP Group,
+Multi-Dest IP, Proxy Function, SNMP Function, P2P Function; WSDEV0001 reports `0x06`, so it cannot
+exercise the high bits).
 
 ## More Advanced Settings
 

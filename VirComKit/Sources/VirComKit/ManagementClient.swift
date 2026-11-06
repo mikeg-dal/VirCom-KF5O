@@ -88,38 +88,86 @@ public struct ManagementClient: Sendable {
         }
     }
 
-    /// Writes parameters. The device applies them and restarts.
-    /// Broadcast twice, exactly as VirCom does, so it works even across subnets.
-    public func write(_ parameters: DeviceParameters, unicastTo device: DiscoveredDevice? = nil) async throws {
-        try DeviceWriteGuard.check("Modify Setting")
-        let packet = ZLProtocol.packet(.writeParameters, parameters: parameters.raw)
-        if let device, device.manual {
-            try await run { socket in
-                for _ in 0..<2 { try socket.send(packet, to: device.replyAddress.description, port: device.replyPort) }
-            }
-        } else {
-            try await broadcast(packet, times: 2)
-        }
+    /// What the device said about a parameter write.
+    public enum WriteAcknowledgement: Sendable, Equatable {
+        /// The device echoed a parameter block back; `applied` is false when the block it
+        /// returned still differs from what was sent, which means it kept its old settings.
+        case acknowledged(applied: Bool)
+        /// Command 0x0C: the device refused because the key is wrong.
+        case refusedWrongKey
+        /// Nothing came back within the listening window.
+        case noReply
     }
 
-    /// Sends `packet` as a limited and subnet broadcast on every interface (see `search`).
-    private func broadcast(_ packet: [UInt8], times: Int) async throws {
-        let port = devicePort, fallback = broadcastAddress
-        try await Task.detached(priority: .userInitiated) {
-            var sent = false
-            for iface in UDPSocket.broadcastInterfaces() {
-                guard let s = try? UDPSocket(preferredPort: 0, interfaceIndex: iface.index) else { continue }
-                defer { s.close() }
-                for _ in 0..<times {
-                    if (try? s.send(packet, to: "255.255.255.255", port: port)) != nil { sent = true }
-                    if (try? s.send(packet, to: iface.broadcast, port: port)) != nil { sent = true }
+    /// Writes parameters. The device applies them and restarts.
+    /// Broadcast twice, exactly as VirCom does, so it works even across subnets.
+    ///
+    /// The device answers a write the same way it answers a search, and may answer `0x0C` to refuse
+    /// it. Earlier versions sent the packet and reported success without reading the reply, so a
+    /// write the device discarded still looked like it had worked.
+    @discardableResult
+    public func write(_ parameters: DeviceParameters,
+                      unicastTo device: DiscoveredDevice? = nil,
+                      listenFor listen: Duration = .seconds(2)) async throws -> WriteAcknowledgement {
+        try DeviceWriteGuard.check("Modify Setting")
+        let packet = ZLProtocol.packet(.writeParameters, parameters: parameters.raw)
+        let key = parameters.deviceKey
+        if let device, device.manual {
+            return try await run { socket in
+                for _ in 0..<2 { try socket.send(packet, to: device.replyAddress.description, port: device.replyPort) }
+                return Self.listen(on: [socket], for: listen, key: key, sent: parameters)
+            }
+        }
+        return try await broadcast(packet, times: 2, listenFor: listen, key: key, sent: parameters)
+    }
+
+    /// Reads replies from `sockets` until one concerns this device or the window closes.
+    private static func listen(on sockets: [UDPSocket], for window: Duration,
+                               key: UInt32, sent: DeviceParameters) -> WriteAcknowledgement {
+        let deadline = ContinuousClock.now + window
+        while ContinuousClock.now < deadline {
+            for socket in sockets {
+                guard let (data, _, _) = socket.receive(timeout: .milliseconds(50)) else { continue }
+                switch ZLProtocol.parse(data) {
+                case .wrongKey:
+                    return .refusedWrongKey
+                case .parameters(let got):
+                    guard got.deviceKey == key else { continue }
+                    return .acknowledged(applied: got.name == sent.name && got.workMode == sent.workMode)
+                case nil:
+                    continue
                 }
             }
-            if !sent || fallback != "255.255.255.255" {
+        }
+        return .noReply
+    }
+
+    /// Sends `packet` as a limited and subnet broadcast on every interface (see `search`),
+    /// then listens on the same sockets for the device's answer.
+    @discardableResult
+    private func broadcast(_ packet: [UInt8], times: Int, listenFor listen: Duration = .zero,
+                           key: UInt32? = nil,
+                           sent: DeviceParameters? = nil) async throws -> WriteAcknowledgement {
+        let port = devicePort, fallback = broadcastAddress
+        return try await Task.detached(priority: .userInitiated) {
+            var sockets: [UDPSocket] = []
+            defer { sockets.forEach { $0.close() } }
+            var sent_ = false
+            for iface in UDPSocket.broadcastInterfaces() {
+                guard let s = try? UDPSocket(preferredPort: 0, interfaceIndex: iface.index) else { continue }
+                sockets.append(s)
+                for _ in 0..<times {
+                    if (try? s.send(packet, to: "255.255.255.255", port: port)) != nil { sent_ = true }
+                    if (try? s.send(packet, to: iface.broadcast, port: port)) != nil { sent_ = true }
+                }
+            }
+            if !sent_ || fallback != "255.255.255.255" {
                 let s = try UDPSocket(preferredPort: 0)
-                defer { s.close() }
+                sockets.append(s)
                 for _ in 0..<times { try s.send(packet, to: fallback, port: port) }
             }
+            guard listen > .zero, let key, let sent else { return .noReply }
+            return Self.listen(on: sockets, for: listen, key: key, sent: sent)
         }.value
     }
 

@@ -144,7 +144,14 @@ final class AppModel {
             log("Search failed: \(error.localizedDescription)")
         }
         var merged: [UInt32: DiscoveredDevice] = [:]
-        for d in found { merged[d.id] = merged[d.id] ?? d }
+        // A device found by both the broadcast and a manual range keeps the range result: that is
+        // what marks it `manual`, and writes to a manual device are sent unicast rather than
+        // broadcast. Taking the first hit always threw the range result away, because the
+        // broadcast search runs first.
+        for d in found {
+            if let existing = merged[d.id], existing.manual || !d.manual { continue }
+            merged[d.id] = d
+        }
         for d in devices where d.serialPort != nil && merged[d.id] == nil { merged[d.id] = d }
         devices = merged.values.sorted { $0.parameters.ip < $1.parameters.ip }
         log("Found \(devices.count) device(s).")
@@ -225,11 +232,53 @@ final class AppModel {
             }
         }
         do {
-            try await client.write(params, unicastTo: device.manual ? device : nil)
-            log("Settings sent to \(device.parameters.name) (\(device.parameters.deviceID)). Please wait for the device to restart.")
+            let unicast = device.manual
+            let ack = try await client.write(params, unicastTo: unicast ? device : nil)
+            let how = unicast ? "unicast to \(device.replyAddress):\(device.replyPort)" : "broadcast"
+            let who = "\(device.parameters.name) (\(device.parameters.deviceID))"
+            log("Write sent \(how).")
+            switch ack {
+            case .acknowledged(applied: false):
+                log("\(who) answered the write but kept its old settings.")
+                alert = AlertInfo(
+                    title: "Modify Setting",
+                    message: "\(who) received the settings and answered, but its reply still shows the old values, so it did not apply them. Some firmware only accepts changes through its own web page, or needs the key.")
+                return false
+            case .refusedWrongKey:
+                log("\(who) refused the write: wrong key.")
+                alert = AlertInfo(title: "Modify Setting",
+                                  message: "\(who) refused the change because the key is wrong. Set the right key with Modify Key and try again.")
+                return false
+            case .noReply:
+                // Expected: VirCom does not wait for an answer to 0x02 either, it just copies the
+                // sent block into its own record. Silence is not proof the write was applied.
+                log("Settings sent to \(who). It does not acknowledge writes, so watch whether the values come back changed.")
+            case .acknowledged(applied: true):
+                log("Settings applied by \(who). Please wait for the device to restart.")
+            }
+            // Read the device back and say what it actually kept. WSDEV0001 (firmware V1.452)
+            // silently refuses a name change — its own web page refuses it too — and without this
+            // check the app reported success for a write the device had discarded.
             Task { [weak self] in
-                try? await Task.sleep(for: .seconds(4))
+                try? await Task.sleep(for: .seconds(5))
                 await self?.search()
+                guard let self else { return }
+                guard let now = devices.first(where: { $0.parameters.deviceKey == params.deviceKey }) else {
+                    log("\(who) did not answer the search after the write.")
+                    return
+                }
+                let refused = now.parameters.differences(from: params)
+                if refused.isEmpty {
+                    log("\(who) applied every setting.")
+                } else {
+                    log("\(who) kept its old value for: \(refused.joined(separator: ", ")).")
+                    alert = AlertInfo(
+                        title: "The device refused some settings",
+                        message: "\(who) applied the write but kept its old \(refused.joined(separator: ", ")). "
+                               + (refused == ["name"]
+                                  ? "This firmware does not let the name be changed over the network; its own web page refuses it as well."
+                                  : "Those fields may be fixed in this firmware, or set only through the device's web page."))
+                }
             }
             return true
         } catch {

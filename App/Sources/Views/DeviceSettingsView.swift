@@ -96,6 +96,7 @@ struct DeviceSettingsView: View {
         } detail: {
             detail
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                .safeAreaInset(edge: .bottom, spacing: 0) { paneDiagram }
                 .safeAreaInset(edge: .bottom, spacing: 0) { bottomBar }
         }
         .frame(minWidth: 820, minHeight: 560)
@@ -183,6 +184,24 @@ struct DeviceSettingsView: View {
         .overlay(alignment: .top) { Divider() }
     }
 
+    /// The explanatory diagram for the pane on screen, pinned above the button bar.
+    @ViewBuilder private var paneDiagram: some View {
+        switch pane ?? .device {
+        case .network:
+            WorkModeDiagram(p: p)
+        case .rs485:
+            RS485BusDiagram(multiHost: adv.multiHostEnabled, multiHostWaitMs: adv.multiHostWaitMs,
+                            conflictDetection: adv.conflictDetection, busIdleMs: adv.busIdleMs)
+        case .destinations:
+            DestinationsDiagram(
+                mainDestination: p.destinationHost.isEmpty ? "" : "\(p.destinationHost):\(p.destinationPort)",
+                extras: adv.destinations,
+                sendsToDestinations: p.workMode != .tcpServer)
+        default:
+            EmptyView()
+        }
+    }
+
     @ViewBuilder private var detail: some View {
         switch pane ?? .device {
         case .device: devicePane
@@ -229,6 +248,20 @@ struct DeviceSettingsView: View {
         .formStyle(.grouped)
     }
 
+    /// One address field with its label above it, sized so two sit side by side.
+    private func addressField(_ label: String, _ text: Binding<String>,
+                              disabled: Bool = false, id: String? = nil) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(label).font(.caption).foregroundStyle(.secondary)
+            TextField(label, text: text)
+                .labelsHidden()
+                .textFieldStyle(.roundedBorder)
+                .disabled(disabled)
+                .accessibilityIdentifier(id ?? "field.\(label)")
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
     private var networkPane: some View {
         Form {
             Section("Address") {
@@ -236,15 +269,23 @@ struct DeviceSettingsView: View {
                     Text("Static").tag(false)
                     Text("DHCP").tag(true)
                 }
-                TextField("IP address", text: $ipText).disabled(p.dhcp).accessibilityIdentifier("field.ip")
-                TextField("Net mask", text: $maskText).disabled(p.dhcp)
-                TextField("Gateway", text: $gatewayText).disabled(p.dhcp)
-                TextField("DNS server", text: $dnsText)
+                Grid(alignment: .leading, horizontalSpacing: 20, verticalSpacing: 8) {
+                // Two to a row: four separate rows cost the pane the space the diagram needs.
+                GridRow {
+                    addressField("IP address", $ipText, disabled: p.dhcp, id: "field.ip")
+                    addressField("Net mask", $maskText, disabled: p.dhcp)
+                }
+                GridRow {
+                    addressField("Gateway", $gatewayText, disabled: p.dhcp)
+                    addressField("DNS server", $dnsText)
+                }
+                }
             }
             Section {
                 Picker("Work mode", selection: $p.workMode) {
                     ForEach(WorkMode.allCases) { Text($0.title).tag($0) }
                 }
+                .accessibilityIdentifier("field.workMode")
                 TextField("Port", value: $p.devicePort, format: .number.grouping(.never))
                 LabeledContent("Destination") {
                     HStack {

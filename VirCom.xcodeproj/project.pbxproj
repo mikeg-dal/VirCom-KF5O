@@ -21,9 +21,11 @@
 		9CFD4558A47723D5048DE37A /* DeviceSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415BB6D8A606DAA4F5F783C3 /* DeviceSettingsView.swift */; };
 		9FF40D504CAA4A3A1C940100 /* ConfigEditors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD13EE96152ECE277B63FE5E /* ConfigEditors.swift */; };
 		A20EEFB72C1927A36FF1BBAC /* FourGToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A30D355EEC9D371016D6CA6 /* FourGToolView.swift */; };
+		B05D38B180C4FA77328D0520 /* ModeDiagram.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78991438BEEFEA6EE4136F9C /* ModeDiagram.swift */; };
 		B6CD8C3A23DB8BE8965CFBDF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAC25C97885D3542AA6175D5 /* Assets.xcassets */; };
 		B7A54346948495491EE9E1DF /* VirComKit in Frameworks */ = {isa = PBXBuildFile; productRef = 23CB5E478D9AD5CAFD529FED /* VirComKit */; };
 		C5686211033A65C04AC2F52E /* DeviceManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94878DB8D1C8022EADD7551E /* DeviceManagerView.swift */; };
+		E7A613ABD4E54EB82129B611 /* VirComDiagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA30AD0F1BC438488A196EF3 /* VirComDiagramTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,7 @@
 		69ED692801A123BF6ADF7120 /* MoreAdvancedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreAdvancedView.swift; sourceTree = "<group>"; };
 		6FBE5407D6A9DDFA81F770FD /* SerialSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerialSearchView.swift; sourceTree = "<group>"; };
 		7750E89F12F89B012609F018 /* DownloadToolModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadToolModel.swift; sourceTree = "<group>"; };
+		78991438BEEFEA6EE4136F9C /* ModeDiagram.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModeDiagram.swift; sourceTree = "<group>"; };
 		7A30D355EEC9D371016D6CA6 /* FourGToolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourGToolView.swift; sourceTree = "<group>"; };
 		7C1502A54EDA1BE8FD2B5A2B /* VirCom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VirCom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F9D105482A743254F4B2B1 /* DownloadToolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadToolView.swift; sourceTree = "<group>"; };
@@ -54,6 +57,7 @@
 		A79D75368A2332AE81C40D0D /* VirComUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VirComUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD13EE96152ECE277B63FE5E /* ConfigEditors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigEditors.swift; sourceTree = "<group>"; };
 		C6B5F7F1C76C195BCAEF0C47 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
+		DA30AD0F1BC438488A196EF3 /* VirComDiagramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirComDiagramTests.swift; sourceTree = "<group>"; };
 		DC7977597C7B8C10D3E9D6A5 /* VirComApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirComApp.swift; sourceTree = "<group>"; };
 		FAC25C97885D3542AA6175D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +86,7 @@
 		21A08CEA85A810599D9E5B1A /* UITests */ = {
 			isa = PBXGroup;
 			children = (
+				DA30AD0F1BC438488A196EF3 /* VirComDiagramTests.swift */,
 				377B7235CD9AB6C7AB21D51B /* VirComUITests.swift */,
 			);
 			path = UITests;
@@ -106,6 +111,7 @@
 				84F9D105482A743254F4B2B1 /* DownloadToolView.swift */,
 				7A30D355EEC9D371016D6CA6 /* FourGToolView.swift */,
 				88B935B157788AF43AD156EC /* MainView.swift */,
+				78991438BEEFEA6EE4136F9C /* ModeDiagram.swift */,
 				69ED692801A123BF6ADF7120 /* MoreAdvancedView.swift */,
 				4F57AE3BB41136ADE3DB6A6C /* PortEditorView.swift */,
 				C6B5F7F1C76C195BCAEF0C47 /* QRCodeView.swift */,
@@ -267,6 +273,7 @@
 				60069F9E46DF32A4F6E25B3E /* DownloadToolView.swift in Sources */,
 				A20EEFB72C1927A36FF1BBAC /* FourGToolView.swift in Sources */,
 				87B78478860277D9F849C835 /* MainView.swift in Sources */,
+				B05D38B180C4FA77328D0520 /* ModeDiagram.swift in Sources */,
 				64E53D5C634BD22AFAEACD34 /* MoreAdvancedView.swift in Sources */,
 				7387D53A8111E9AD00DFF884 /* PortEditorView.swift in Sources */,
 				6FE89D0E6FCAC8A426E615CC /* QRCodeView.swift in Sources */,
@@ -280,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7A613ABD4E54EB82129B611 /* VirComDiagramTests.swift in Sources */,
 				5AD2630E5A7A3FAE83F63106 /* VirComUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

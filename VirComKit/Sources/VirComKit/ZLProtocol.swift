@@ -351,3 +351,38 @@ public struct BatchEdit: Sendable, Hashable, Codable {
         }
     }
 }
+
+public extension DeviceParameters {
+    /// Field-by-field comparison, used to check what a device actually kept after a write.
+    /// Returns a readable name for every editable field whose value differs.
+    func differences(from other: DeviceParameters) -> [String] {
+        var out: [String] = []
+        func check<T: Equatable>(_ label: String, _ a: T, _ b: T) {
+            if a != b { out.append(label) }
+        }
+        check("name", name, other.name)
+        check("IP address", ip, other.ip)
+        check("net mask", subnetMask, other.subnetMask)
+        check("gateway", gateway, other.gateway)
+        check("DNS server", dnsServer, other.dnsServer)
+        check("IP mode", dhcp, other.dhcp)
+        check("work mode", workMode, other.workMode)
+        check("device port", devicePort, other.devicePort)
+        check("destination", destinationHost, other.destinationHost)
+        check("destination port", destinationPort, other.destinationPort)
+        check("destination mode", dynamicDestination, other.dynamicDestination)
+        check("UDP group IP", udpGroupIP, other.udpGroupIP)
+        check("baud rate", baudIndex, other.baudIndex)
+        check("data bits", dataBits, other.dataBits)
+        check("parity", parity, other.parity)
+        check("stop bits", twoStopBits, other.twoStopBits)
+        check("flow control", flowControl, other.flowControl)
+        check("transfer protocol", transferProtocol, other.transferProtocol)
+        check("max frame length", maxFrameLength, other.maxFrameLength)
+        check("max interval", packetInterval, other.packetInterval)
+        check("reconnect time", reconnectSeconds, other.reconnectSeconds)
+        check("keep alive", keepAliveSeconds, other.keepAliveSeconds)
+        check("HTTP port", httpPort, other.httpPort)
+        return out
+    }
+}
